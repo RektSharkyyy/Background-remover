@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
+import { AppContext } from '../context/AppContex'
 
 const Header = () => {
+
+    const {removeBg} = useContext(AppContext)
+
   return (
     <div className='flex items-center justify-between max-sm:flex-col-reverse gap-y-10 px-4 mt-10 lg:px-44 sm:mt-20'>
         {/* -----left side----- */}
@@ -9,7 +13,7 @@ const Header = () => {
             <h1 className='text-4xl xl:text-5xl 2xl:text-6xl font-bold text-black leading-tight'>Remove the <br className='max-md:hidden'/> <span className='bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent'>Background</span> <br className='max-md:hidden'/> from images</h1>
             <p className='my-6 text-[15px] text-black'>A simple and powerful background remover app that lets you upload any image and remove its background instantly. <br className='max-sm:hidden'/> Perfect for creating transparent images, product photos, profile pictures, and more with just one click.</p>
             <div>
-                <input type="file" name="" id="upload1" hidden/>
+                <input onChange={e => removeBg(e.target.files[0])} type="file" accept='image/*' id="upload1" hidden/>
                 <label className='inline-flex gap-3 px-8 py-3.5 rounded-full cursor-pointer bg-gradient-to-r from-blue-600 to-pink-600 m-auto hover:scale-105 transition-all duration-700' htmlFor="upload1">
                     <img width={20} src={assets.upload_btn_icon} alt="" />
                     <p className='text-white'>Upload your image</p>
